@@ -1,0 +1,52 @@
+import React from "react";
+// react路由控制
+import {Router, Route, hashHistory} from 'react-router';
+// 定义根组件,放置路由
+var Home = React.createClass({
+    render() {
+        return (
+            <div>
+                {/*当行条*/}
+                <ul role="nav">
+                    <li><a href="/">首页</a></li>
+                    <li><a href="#/about">关于</a></li>
+                    <li><a href="#/project">项目</a></li>
+                    <li><a href="#/project/1">第一个项目</a></li>
+                </ul>
+                {/* 路由 */}
+                <Router history={hashHistory}>
+                    <Route path="/" component={Main}/>
+                    <Route path="/about" component={About}/>
+                    <Route path="/project" component={Project}/>
+                    <Route path="/project/:id" component={Project}/>
+                </Router>
+            </div>
+        )
+    }
+});
+// /main
+var Main = React.createClass({
+    render() {
+        return (
+            <div>main</div>
+        )
+    }
+});
+// /about
+var About = React.createClass({
+    render() {
+        return (
+            <div>about</div>
+        )
+    }
+});
+// /project
+var Project = React.createClass({
+    render() {
+        return (
+            // 获取路由参数中的:id
+            <div>project {this.props.params.id}</div>
+        )
+    }
+});
+export default Home;
